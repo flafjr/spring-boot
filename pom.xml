@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-    <groupId>com.github.flafjr</groupId>
-	<artifactId>spring-boot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot</name>
-	<description>Just playing around with Spring boot</description>
+    <groupId>br.com.arenacampeao</groupId>
+    <artifactId>management</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>management</name>
+    <description>Demo project for Spring Boot</description>
 
     <properties>
 		<java.version>11</java.version>
@@ -33,7 +33,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -64,7 +63,25 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit4</artifactId>
+            <version>0.22.0</version>
+            <scope>test</scope>
+        </dependency>
+
+		<!-- Flyway - https://medium.com/@tejozarkar/configure-flyway-with-spring-boot-9493aebf336b -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+
+	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -91,6 +108,32 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+<!--			<plugin>-->
+<!--				<groupId>org.flywaydb</groupId>-->
+<!--				<artifactId>flyway-maven-plugin</artifactId>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>generate-sources</phase>-->
+<!--						<goals>-->
+<!--							<goal>migrate</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--				<configuration>-->
+<!--					<driver>org.postgresql.Driver</driver>-->
+<!--					<url>jdbc:postgresql://localhost:5432/test</url>-->
+<!--					<user>postgres</user>-->
+<!--					<password>root</password>-->
+<!--					<baselineOnMigrate>true</baselineOnMigrate>-->
+<!--					<schemas>public</schemas>-->
+<!--					<locations>-->
+<!--						<location>-->
+<!--							filesystem:src/main/resources/db/migration-->
+<!--						</location>-->
+<!--					</locations>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

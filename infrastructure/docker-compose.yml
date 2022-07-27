@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  localstack:
+    container_name: "localstack"
+    image: localstack/localstack:latest
+    ports:
+      - '${LOCALSTACK_PORT}:${LOCALSTACK_PORT}'
+      - '${LOCALSTACK_UI_PORT}:${LOCALSTACK_UI_PORT}'
+    environment:
+      - EDGE_PORT=${LOCALSTACK_PORT}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - AWS_ACCESS_KEY_ID=fake
+      - AWS_SECRET_ACCESS_KEY=fake
+      - SERVICES=secretsmanager,ssm,sns,sqs,sts
+      - PORT_WEB_UI=${LOCALSTACK_UI_PORT}
+      - DEFAULT_REGION=${LOCALSTACK_REGION}
+      - DEBUG=0
+      - HOSTNAME_EXTERNAL=localhost
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
